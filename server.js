@@ -8,6 +8,10 @@ app.get("/", (request, response) => {
   response.send("hello world");
 });
 
+app.get("/json", (request, response) => {
+  response.status(200).json({ name: "Tyler", party: true });
+});
+
 app.listen(3000, () => {
   console.log("Express intro running on localhost:3000");
 });
