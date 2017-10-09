@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const foods = require("./public/json");
 
 const urlLogger = (request, response, next) => {
   console.log("Request URL:", request.url);
@@ -20,7 +21,12 @@ app.get("/", (request, response) => {
 });
 
 app.get("/json", (request, response) => {
-  response.status(200).json({ name: "Tyler", party: true });
+  response.status(200).json({ foods });
+  response.status(404).json({ error: "uh-oh" });
+});
+
+app.get("/sunsets", (request, response) => {
+  response.sendFile(path.join(__dirname, "public", "sunsets.html"));
 });
 
 app.listen(3000, () => {
